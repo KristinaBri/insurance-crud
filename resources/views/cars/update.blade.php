@@ -7,18 +7,31 @@
     <title>Cars</title>
 </head>
 <body>
+
+@extends('layouts.main')
+@section('content')
     <form action="{{route('cars.update', $car->id)}}" method="post">
         @csrf
         @method('PUT')
-        <label class="form-label">Registration number:</label>
-        <input type="text" name="reg_number" value="{{$car->reg_number}}">
-        <label class="form-label">Brand:</label>
-        <input type="text" name="brand" value="{{$car->brand}}">
-        <label class="form-label">Model:</label>
-        <input type="text" name="model" value="{{$car->model}}">
-        <label class="form-label">Owner ID</label>
-        <input type="number" name="owner_id"  value="{{$car->owner_id}}"><br>
-        <button>Edit</button>
+        <div>
+            <label class="form-label">Registration number:</label>
+            <input type="text" name="reg_number" value="{{$car->reg_number}}">
+        </div>
+        <div>
+            <label class="form-label">Brand:</label>
+            <input type="text" name="brand" value="{{$car->brand}}">
+        </div>
+        <div>
+            <label class="form-label">Model:</label>
+            <input type="text" name="model" value="{{$car->model}}">
+        </div>
+        <div>
+            <label class="form-label">Owner ID</label>
+            <input type="number" name="owner_id"  value="{{$car->owner_id}}"><br>
+        </div>
+        <button class="btn btn-warning">Edit</button>
     </form>
+@endsection
+
 </body>
 

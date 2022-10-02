@@ -7,8 +7,10 @@
     <title>Cars</title>
 </head>
 <body>
-<a class="btn btn-success" href="{{route('cars.create')}}">Add car</a>
-<div class="col-md-6">
+
+@extends('layouts.main')
+@section('content')
+<a class="btn btn-success mb-3" href="{{route('cars.create')}}">Add car</a>
     <table class="table table-success table-striped">
         <tr>
 
@@ -16,6 +18,7 @@
             <th>Brand</th>
             <th>Model</th>
             <th>Owner ID</th>
+            <th></th>
             <th></th>
         </tr>
 
@@ -27,18 +30,19 @@
             <td>{{$car->model}}</td>
             <td>{{$car->owner_id}}</td>
             <td>
-                <a class="btn btn-success" href="{{route('cars.edit', $car->id)}}">Edit</a>
+                <a class="btn btn-warning" href="{{route('cars.edit', $car->id)}}">Edit</a>
             </td>
             <td>
                 <form action="{{route('cars.destroy', $car->id)}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button>Delete</button>
+                    <button class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-</div>
+@endsection
+
 </body>
 
