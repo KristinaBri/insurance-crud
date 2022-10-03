@@ -8,7 +8,7 @@
 </head>
 <body>
 
-@extends('layouts.main')
+@extends('layouts.mainOwners')
 @section('content2')
     <form action="{{route('owners.update', $owner->id)}}" method="post">
         @csrf

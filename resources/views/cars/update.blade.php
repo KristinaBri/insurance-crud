@@ -8,7 +8,7 @@
 </head>
 <body>
 
-@extends('layouts.main')
+@extends('layouts.mainCars')
 @section('content')
     <form action="{{route('cars.update', $car->id)}}" method="post">
         @csrf
@@ -27,7 +27,12 @@
         </div>
         <div>
             <label class="form-label">Owner ID</label>
-            <input type="number" name="owner_id"  value="{{$car->owner_id}}"><br>
+            <select class="form-control" name="owner_id">
+                <option selected>Please select...</option>
+                @foreach(App\Models\Owner::get() as $owner)
+                    <option value="{{$owner->id}}" {{$car->owner_id == $owner->id ? 'selected' : ''}}>{{ $owner->name }} {{ $owner->surname }}</option>
+                @endforeach
+            </select>
         </div>
         <button class="btn btn-warning">Edit</button>
     </form>

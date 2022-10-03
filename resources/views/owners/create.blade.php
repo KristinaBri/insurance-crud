@@ -9,7 +9,7 @@
 
 <body>
 
-@extends('layouts.main')
+@extends('layouts.mainOwners')
 @section('content2')
     <form action="{{route('owners.store')}}" method="post">
         @csrf

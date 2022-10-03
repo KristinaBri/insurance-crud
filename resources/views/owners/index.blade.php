@@ -8,9 +8,10 @@
 </head>
 <body>
 
-@extends('layouts.main')
+@extends('layouts.mainOwners')
 @section('content2')
     <a class="btn btn-success mb-3" href="{{route('owners.create')}}">Add owner</a>
+    <a class="btn btn-success mb-3 ms-3" href="{{route('cars.index')}}">Cars</a>
     <table class="table table-success table-striped">
         <tr>
 

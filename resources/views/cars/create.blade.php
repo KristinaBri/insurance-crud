@@ -9,7 +9,7 @@
 
 <body>
 
-@extends('layouts.main')
+@extends('layouts.mainCars')
 @section('content')
     <form action="{{route('cars.store')}}" method="post">
         @csrf
@@ -26,8 +26,13 @@
             <input type="text" name="model">
         </div>
         <div class="mb-3">
-            <label for="" class="form-label">Owner ID</label>
-            <input type="number" name="owner_id">
+            <label for="" class="form-label">Owner</label>
+            <select class="form-control" name="owner_id">
+                <option selected>Please select...</option>
+                @foreach(App\Models\Owner::get() as $owner)
+                    <option value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>
+                @endforeach
+            </select>
         </div>
         <button class="btn btn-success">Add</button>
     </form>
