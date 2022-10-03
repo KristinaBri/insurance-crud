@@ -34,4 +34,5 @@
 @endsection
 
 </body>
+</html>
 

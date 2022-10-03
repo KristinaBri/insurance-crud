@@ -14,7 +14,8 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        //
+        $owners=Owner::all();
+        return view('owners.index', ['owners'=>$owners]);
     }
 
     /**
@@ -24,7 +25,7 @@ class OwnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('owners.create');
     }
 
     /**
@@ -35,7 +36,14 @@ class OwnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $owner=new Owner();
+
+        $owner->name=$request->name;
+        $owner->surname=$request->surname;
+
+        $owner->save();
+
+        return redirect()->route('owners.index');
     }
 
     /**
@@ -57,7 +65,7 @@ class OwnerController extends Controller
      */
     public function edit(Owner $owner)
     {
-        //
+        return view('owners.update', ['owner'=>$owner]);
     }
 
     /**
@@ -69,7 +77,12 @@ class OwnerController extends Controller
      */
     public function update(Request $request, Owner $owner)
     {
-        //
+        $owner->name=$request->name;
+        $owner->surname=$request->surname;
+
+        $owner->save();
+
+        return redirect()->route('owners.index');
     }
 
     /**
@@ -80,6 +93,13 @@ class OwnerController extends Controller
      */
     public function destroy(Owner $owner)
     {
-        //
+        $owner->delete();
+        return redirect()->route('owners.index');
     }
+
+    public function showOwners() {
+        $owners=Owner::all();
+        return view('owners.index', ['owners'=>$owners]);
+    }
+
 }
