@@ -15,21 +15,21 @@
         @method('PUT')
         <div>
             <label class="form-label">Registration number:</label>
-            <input type="text" name="reg_number" value="{{$car->reg_number}}">
+            <input class="form-control @error('reg_number') is-invalid @enderror" type="text" name="reg_number" value="{{$car->reg_number}}">
         </div>
         <div>
             <label class="form-label">Brand:</label>
-            <input type="text" name="brand" value="{{$car->brand}}">
+            <input class="form-control @error('brand') is-invalid @enderror" type="text" name="brand" value="{{$car->brand}}">
         </div>
         <div>
             <label class="form-label">Model:</label>
-            <input type="text" name="model" value="{{$car->model}}">
+            <input class="form-control @error('model') is-invalid @enderror" type="text" name="model" value="{{$car->model}}">
         </div>
         <div>
             <label class="form-label">Owner ID</label>
             <select class="form-control" name="owner_id">
                 <option selected>Please select...</option>
-                @foreach(App\Models\Owner::get() as $owner)
+                @foreach($owners as $owner)
                     <option value="{{$owner->id}}" {{$car->owner_id == $owner->id ? 'selected' : ''}}>{{ $owner->name }} {{ $owner->surname }}</option>
                 @endforeach
             </select>

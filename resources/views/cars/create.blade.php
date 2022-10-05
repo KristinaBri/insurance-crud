@@ -11,25 +11,36 @@
 
 @extends('layouts.mainCars')
 @section('content')
+
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach($errors->all() as  $error)
+                <div>{{ $error }}</div>
+            @endforeach
+        </div>
+    @endif
+
+
     <form action="{{route('cars.store')}}" method="post">
         @csrf
         <div class="mb-3">
             <label for="" class="form-label">Registration No.</label>
-            <input type="text" name="reg_number">
+            <input class="form-control @error('reg_number') is-invalid @enderror" type="text" name="reg_number" value="{{ old('reg_number') }}">
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Brand</label>
-            <input type="text" name="brand">
+            <input class="form-control @error('brand') is-invalid @enderror" type="text" name="brand" value="{{ old('brand') }}">
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Model</label>
-            <input type="text" name="model">
+            <input class="form-control @error('model') is-invalid @enderror" type="text" name="model" value="{{ old('model') }}">
         </div>
         <div class="mb-3">
             <label for="" class="form-label">Owner</label>
             <select class="form-control" name="owner_id">
                 <option selected>Please select...</option>
-                @foreach(App\Models\Owner::get() as $owner)
+                @foreach($owners as $owner)
                     <option value="{{$owner->id}}">{{$owner->name}} {{$owner->surname}}</option>
                 @endforeach
             </select>

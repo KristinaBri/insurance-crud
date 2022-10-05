@@ -26,7 +26,8 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('cars.create');
+        $owners=Owner::all();
+        return view('cars.create', ['owners'=>$owners]);
     }
 
     /**
@@ -37,6 +38,12 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'reg_number'=>['required', 'max:6','alpha_num',],
+            'brand'=>['required','alpha_num'],
+            'model'=>['required','alpha_num']
+        ]);
+
         $car=new Car();
 
         $car->reg_number=$request->reg_number;
@@ -69,7 +76,8 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('cars.update', ['car'=>$car]);
+        $owners=Owner::all();
+        return view('cars.update', ['car'=>$car, 'owners'=>$owners]);
     }
 
     /**
